@@ -25,10 +25,17 @@ public class GameController : MonoBehaviour {
 
     public void SetSpaceship(GameObject ship) {
         spaceship = ship;
+        StartPoints();
     }
 
     public void StartPoints() {
+        pointsAllowed = true;
         StartCoroutine("PointsOverTime");
+    }
+
+    public void StopPoints() {
+        pointsAllowed = false;
+        StopCoroutine("PointsOverTime");
     }
 
     public int GetPoints() {
@@ -60,16 +67,17 @@ public class GameController : MonoBehaviour {
     }
 
     public void ResetStats() {
-        pointsAllowed = true;
+        StopPoints();
         points = 0;
         lives = 3;
     }
 
 
     public void ShipCrash() {
+        spaceship.GetComponent<Spaceship>().SetCurrentLane(1);
         DecreasePoints(80);
         DecreaseLives(1);
-        pointsAllowed = false;
+        StopPoints();
         spaceship.SetActive(false);
         spaceship.GetComponent<Spaceship>().enabled = false;
         Instantiate(explosion, spaceship.transform.position + new Vector3(0,5,0), Quaternion.Euler(0,180,0));
@@ -94,7 +102,7 @@ public class GameController : MonoBehaviour {
         spaceship.SetActive(true);
         spaceship.GetComponent<Spaceship>().enabled = true;
         FindObjectOfType<ObstacleManager>().SpawnObstacles(true);
-        pointsAllowed = true;
+        StartPoints();
         yield return null;
     }
 

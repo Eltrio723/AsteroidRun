@@ -37,6 +37,7 @@ public class Pause : MonoBehaviour {
 
     public void ReturnButton() {
         Time.timeScale = 1;
+        FindObjectOfType<GameController>().ResetStats();
         FindObjectOfType<SceneController>().LoadMenuFromPause();
     }
 

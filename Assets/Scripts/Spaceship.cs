@@ -85,6 +85,10 @@ public class Spaceship : MonoBehaviour {
 
     }
 
+    public void SetCurrentLane(int n) {
+        currentLane = n;
+    }
+
     IEnumerator SwitchLane(Transform lane) {
         Debug.Log("Move");
         moving = true;

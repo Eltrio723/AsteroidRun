@@ -217,7 +217,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: 3a12300e227c2fc45b2c7c93e186584f, type: 3}
-  AndroidKeystoreName: C:/Users/anto9/Proyectos/Asteroid Run/eltrio723.keystore
+  AndroidKeystoreName: C:/Users/anto9/Proyectos/Asteroid Run 2/eltrio723.keystore
   AndroidKeyaliasName: eltrio723
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
