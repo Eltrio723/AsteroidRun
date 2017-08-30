@@ -8,10 +8,12 @@ public class Pause : MonoBehaviour {
     Transform pauseWindow;
     Transform pauseButton;
     public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI highscoreText;
     public TextMeshProUGUI pausePointsText;
+    public TextMeshProUGUI pauseHighscoreText;
 
-	
-	void Start () {
+
+    void Start () {
         pauseWindow = transform.Find("PauseWindow");
         pauseButton = transform.Find("PauseButton");
 	}
@@ -19,9 +21,11 @@ public class Pause : MonoBehaviour {
     public void PauseButton() {
 
         pausePointsText.text = "Points: " + FindObjectOfType<GameController>().GetPoints();
+        pauseHighscoreText.text = "High Score: " + FindObjectOfType<GameController>().GetHighScore();
         pauseWindow.gameObject.SetActive(true);
         pauseButton.gameObject.SetActive(false);
         pointsText.gameObject.SetActive(false);
+        highscoreText.gameObject.SetActive(false);
         Time.timeScale = 0;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Spaceship>().enabled = false;
 
@@ -31,6 +35,7 @@ public class Pause : MonoBehaviour {
         pauseWindow.gameObject.SetActive(false);
         pauseButton.gameObject.SetActive(true);
         pointsText.gameObject.SetActive(true);
+        highscoreText.gameObject.SetActive(true);
         Time.timeScale = 1;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Spaceship>().enabled = true;
     }

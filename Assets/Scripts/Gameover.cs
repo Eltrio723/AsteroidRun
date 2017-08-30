@@ -8,7 +8,9 @@ public class Gameover : MonoBehaviour {
     Transform gameoverWindows;
     Transform pauseButton;
     public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI highscoreText;
     public TextMeshProUGUI gameoverPointsText;
+    public TextMeshProUGUI gameoverHighscoreText;
 
     bool stopped = false;
 
@@ -20,8 +22,11 @@ public class Gameover : MonoBehaviour {
 
 	public void GameOver () {
         gameoverPointsText.text = "Points: " + FindObjectOfType<GameController>().GetPoints();
+        gameoverHighscoreText.text = "High Score: " + FindObjectOfType<GameController>().GetHighScore();
         gameoverWindows.gameObject.SetActive(true);
         pauseButton.gameObject.SetActive(false);
+        pointsText.gameObject.SetActive(false);
+        highscoreText.gameObject.SetActive(false);
         StartCoroutine("GameoverStopTime");
 	}
 

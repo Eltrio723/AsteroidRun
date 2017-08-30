@@ -241,6 +241,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114990741407953158, guid: dd6d8c951b0fad141a17ab1dfd244d94,
+        type: 2}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 1423866352851066, guid: a12b5bfd4dcc4ad4eb71b9e92f04216a,
+        type: 2}
+    - target: {fileID: 114990741407953158, guid: dd6d8c951b0fad141a17ab1dfd244d94,
+        type: 2}
+      propertyPath: explosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d627e8a1eeb1e3479d6e2bc30a31ff6, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd6d8c951b0fad141a17ab1dfd244d94, type: 2}
   m_IsPrefabParent: 0

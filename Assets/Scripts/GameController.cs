@@ -7,14 +7,17 @@ public class GameController : MonoBehaviour {
 
     public int points = 0;
     public int lives = 3;
+    public int highscore;
     bool pointsAllowed = true;
 
-    public ParticleSystem explosion;
+    public GameObject explosion;
+    public AudioClip explosionSound;
     GameObject spaceship = null;
 
 
     private void Start() {
         DontDestroyOnLoad(gameObject);
+        highscore = PlayerPrefs.GetInt("HighScore",0);
     }
 
     /*private void Awake() {
@@ -25,6 +28,7 @@ public class GameController : MonoBehaviour {
 
     public void SetSpaceship(GameObject ship) {
         spaceship = ship;
+        FindObjectOfType<Hud>().DrawHighScore(highscore);
         StartPoints();
     }
 
@@ -40,6 +44,23 @@ public class GameController : MonoBehaviour {
 
     public int GetPoints() {
         return points;
+    }
+
+    void SetHighScore() {
+        if (points > highscore) {
+            PlayerPrefs.SetInt("HighScore", points);
+            highscore = points;
+            FindObjectOfType<Hud>().DrawHighScore(highscore);
+        }
+    }
+
+    public void ResetHighScore() {
+        PlayerPrefs.SetInt("HighScore",0);
+        highscore = 0;
+    }
+
+    public int GetHighScore() {
+        return highscore;
     }
 
     void IncreasePoints(int n) {
@@ -75,14 +96,17 @@ public class GameController : MonoBehaviour {
 
     public void ShipCrash() {
         spaceship.GetComponent<Spaceship>().SetCurrentLane(1);
+        FindObjectOfType<AudioSource>().PlayOneShot(explosionSound);
         DecreasePoints(80);
         DecreaseLives(1);
         StopPoints();
         spaceship.SetActive(false);
         spaceship.GetComponent<Spaceship>().enabled = false;
         Instantiate(explosion, spaceship.transform.position + new Vector3(0,5,0), Quaternion.Euler(0,180,0));
-        if (lives == 0)
+        if (lives == 0) {
+            SetHighScore();
             GameObject.FindObjectOfType<Gameover>().GameOver();
+        }
         else
             StartCoroutine("RespawnShip");
     }
