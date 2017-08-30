@@ -29,6 +29,8 @@ public class GameController : MonoBehaviour {
     public void SetSpaceship(GameObject ship) {
         spaceship = ship;
         FindObjectOfType<Hud>().DrawHighScore(highscore);
+        FindObjectOfType<Hud>().DrawPoints(points);
+        FindObjectOfType<Hud>().DrawLives(lives);
         StartPoints();
     }
 
@@ -77,6 +79,8 @@ public class GameController : MonoBehaviour {
 
     void IncreaseLives(int n) {
         lives += n;
+        if (lives > 3)
+            lives = 3;
         FindObjectOfType<Hud>().DrawLives(lives);
     }
 
